@@ -1,0 +1,6 @@
+<section>
+  <app-gift-entry (itemAdded)="onItemAdded($event)"></app-gift-entry>
+</section>
+<section>
+  <app-gift-list [items]="data$ | async"></app-gift-list>
+</section>

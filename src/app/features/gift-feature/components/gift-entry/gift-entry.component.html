@@ -1,0 +1,43 @@
+<div class="alert alert-danger"
+     *ngIf="hasErrors && form.invalid">
+  <h3>There are errors:</h3>
+  <ul>
+    <li *ngIf="for.invalid">The "For" field has errors</li>
+    <li *ngIf="holiday.invalid">The "Holiday" field has errors</li>
+    <li *ngIf="suggestions.invalid">The "Suggestions" field has errors</li>
+  </ul>
+</div>
+<form [formGroup]="form"
+      (ngSubmit)="add(focusme)">
+  <div class="form-group">
+    <label for="for">For</label>
+    <input name="for"
+           autofocus
+           #focusme
+           formControlName="for"
+           class="form-control">
+
+  </div>
+  <div class="form-group">
+    <label for="holiday">Holiday</label>
+    <input name="holiday"
+           formControlName="holiday"
+           class="form-control">
+
+    <div class="alert alert-danger"
+         *ngIf="holiday.invalid && (holiday.touched || holiday.dirty)">
+      <p *ngIf="holiday.errors?.required">You have to enter a holiday.</p>
+      <p *ngIf="holiday.errors?.minlength">This has to be at least {{ holiday.errors?.minlength?.requiredLength}}
+        characters</p>
+      <p *ngIf="holiday.errors?.maxlength">That is too darned long! Lighten up!</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="suggestions">Suggestions</label>
+    <textarea name="suggestions"
+              formControlName="suggestions"
+              class="form-control"></textarea>
+  </div>
+  <button type="submit"
+          class="btn btn-success">Add This Person</button>
+</form>
