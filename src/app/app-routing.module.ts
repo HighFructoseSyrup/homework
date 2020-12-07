@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CounterComponent } from './components/counter/counter.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GiftFeatureComponent } from './features/gift-feature/gift-feature.component';
+import { MediaFeatureComponent } from './features/media-feature/media-feature.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'counter',
     component: CounterComponent
+  },
+  {
+    path: 'media',
+    component: MediaFeatureComponent
   }
 ];
 

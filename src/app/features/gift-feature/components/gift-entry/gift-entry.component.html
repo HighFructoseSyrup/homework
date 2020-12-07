@@ -20,10 +20,9 @@
   </div>
   <div class="form-group">
     <label for="holiday">Holiday</label>
-    <input name="holiday"
-           formControlName="holiday"
-           class="form-control">
-
+           <select formControlName="holiday" name="holiday" id="holiday">
+            <option *ngFor="let holiday of data$ | async" value="{{holiday.name}}">{{holiday.name}}</option>
+          </select>
     <div class="alert alert-danger"
          *ngIf="holiday.invalid && (holiday.touched || holiday.dirty)">
       <p *ngIf="holiday.errors?.required">You have to enter a holiday.</p>

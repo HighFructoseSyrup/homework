@@ -1,0 +1,15 @@
+<h3 *ngIf="items?.length === 0">Nothing here.</h3>
+<div class="card"
+     *ngFor="let item of items; let i = index">
+  <div class="card-body">
+    <h5 class="card-title">{{ item.title }} <span *ngIf="item.isLoanedOut === 'Yes'"><em>
+          (loaned out)</em></span></h5>
+    <span *ngIf="item.isLoanedOut === 'No'"><em>
+            (available)</em></span>
+    <p class="card-text">Format is {{ item.format }}.</p>
+    <div>
+      <input type="checkbox" id="isLoanedOut" name="isLoanedOut" (change)="handleCheckedOut($event, i)" [checked]="item.isLoanedOut ==='Yes'">
+      <label for="isLoanedOut">Is Checked out?</label>
+    </div>
+  </div>
+</div>

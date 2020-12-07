@@ -1,0 +1,43 @@
+<div class="alert alert-danger"
+     *ngIf="hasErrors && form.invalid">
+  <h3>There are errors:</h3>
+  <ul>
+    <li *ngIf="title.invalid">The "Title" field has errors</li>
+    <li *ngIf="format.invalid">The "Format" field has errors</li>
+    <li *ngIf="isLoanedOut.invalid">The "isLoanedOut" field has errors</li>
+  </ul>
+</div>
+<form [formGroup]="form"
+      (ngSubmit)="add(focusme)">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input name="title"
+           autofocus
+           #focusme
+           formControlName="title"
+           class="form-control">
+
+  </div>
+  <div class="form-group">
+    <label for="format">Format</label>
+    <input name="format"
+           formControlName="format"
+           class="form-control">
+
+    <div class="alert alert-danger"
+         *ngIf="format.invalid && (format.touched || format.dirty)">
+      <p *ngIf="format.errors?.required">You have to enter a format.</p>
+      <p *ngIf="format.errors?.minlength">This has to be at least {{ format.errors?.minlength?.requiredLength}}
+        characters</p>
+      <p *ngIf="format.errors?.maxlength">That is too darned long! Lighten up!</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="isLoanedOut" ng-init="isLoanedOut=No">Is Loaned out?</label>
+
+      <input type="radio" formControlName='isLoanedOut' required name='isLoanedOut' for='isLoanedOut' value='Yes'>Yes
+      <input type="radio" formControlName='isLoanedOut' required name='isLoanedOut' for='isLoanedOut' value='No'>No
+  </div>
+  <button type="submit"
+          class="btn btn-success">Add Media</button>
+</form>

@@ -13,6 +13,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { GiftAppEffects } from './effects/gift-app.effects';
 import { HttpClientModule } from '@angular/common/http';
 import { GiftEffects } from './effects/gift.effects';
+import { HolidayDataService } from './services/holiday-data.service';
+import { HolidayEffects } from './effects/holidays.effects';
 
 
 @NgModule({
@@ -27,12 +29,12 @@ import { GiftEffects } from './effects/gift.effects';
     CommonModule,
     ReactiveFormsModule,
     StoreModule.forFeature(featureName, reducers),
-    EffectsModule.forFeature([GiftAppEffects, GiftEffects]),
+    EffectsModule.forFeature([GiftAppEffects, GiftEffects, HolidayEffects]),
     HttpClientModule
   ],
   exports: [
     GiftFeatureComponent
   ],
-  providers: [GiftDataService]
+  providers: [GiftDataService, HolidayDataService]
 })
 export class GiftFeatureModule { }

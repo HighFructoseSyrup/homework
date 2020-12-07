@@ -4,6 +4,7 @@ import { Actions } from '@ngrx/effects';
 import { map } from 'rxjs/operators';
 import * as appActions from '../../../actions/app,.actions';
 import * as giftActions from '../actions/gift.actions';
+import * as holidayActions from '../actions/holiday.actions';
 
 // Convert application actions to my actions, or vice versa
 @Injectable()
@@ -24,6 +25,13 @@ export class GiftAppEffects {
     this.actions$.pipe(
       ofType(appActions.applicationStarted),
       map(() => giftActions.loadGiftData())
+    )
+  );
+
+  loadHolidayData$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(appActions.applicationStarted),
+      map(() => holidayActions.loadHolidayData())
     )
   );
 

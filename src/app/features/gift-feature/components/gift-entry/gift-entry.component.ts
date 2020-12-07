@@ -1,7 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { GiftCreate } from '../../models';
-
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { GiftCreate, HolidayItem } from '../../models';
+import { GiftFeatureState, selectHolidays } from '../../reducers';
 
 
 @Component({
@@ -13,9 +15,13 @@ export class GiftEntryComponent implements OnInit {
 
   hasErrors = false;
   form!: FormGroup;
-  @Output() itemAdded = new EventEmitter<GiftCreate>();
-  constructor(private formBuilder: FormBuilder) {
+  data$!: Observable<HolidayItem[]>;
 
+  @Output() itemAdded = new EventEmitter<GiftCreate>();
+  constructor(private formBuilder: FormBuilder, private store: Store<GiftFeatureState>) {
+    this.data$ = this.store.pipe(
+      select(selectHolidays)
+    );
   }
 
   ngOnInit(): void {
